@@ -6,14 +6,14 @@ export default function Textform(props) {
         setText(newText);
     }
     const actionLowOnClick = () =>{
-        let newText = text.toUpperCase();
+        let newText = text.toLowerCase();
         setText(newText);
     }
     const getUserText = (event) =>{
         setText(event.target.value);
     }
     const [text, setText] = useState("Enter Text Here");
-    return (
+    return ( 
         <>
             <div>
                 <h1>{props.heading}</h1>
