@@ -39,6 +39,20 @@ export default function Textform(props) {
             setBtnText("Enable Dark Mode");
         }
     }
+
+    const actionCopyText = () => {
+        var text = document.querySelector('textarea');
+        text.select();
+        navigator.clipboard.writeText(text.value);
+    }
+    const actionRemoveSpace = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+    }
+    const actionRemoveNextLine = () => {
+        let someText = text.replace(/(\r\n|\n|\r)/gm, "")
+        setText(someText);
+    }
     return ( 
         <>
         <div className="container" style={myStyle}>
@@ -48,7 +62,10 @@ export default function Textform(props) {
                 </div>
                 <button className = "btn btn-primary mx-1" onClick={actionUpOnClick}>Convert to UpperCase</button>
                 <button className = "btn btn-primary mx-1" onClick={actionLowOnClick}>Convert to LowerCase</button>
-                <button className = "btn btn-primary mx-1" onClick={actionClearOnClick}>Clear Text Area</button>
+                <button className = "btn btn-danger mx-1" onClick={actionClearOnClick}>Clear Text Area</button>
+                <button className = "btn btn-primary mx-1" onClick={actionCopyText}>Copy Text</button>
+                <button className = "btn btn-primary mx-1" onClick={actionRemoveSpace}>Remove Spaces</button>
+                <button className = "btn btn-primary mx-1" onClick={actionRemoveNextLine}>Remove Next Line Space</button>
             </div>
             <div style={myStyle} className="container my3">
                 <h2>Text Summary</h2>
