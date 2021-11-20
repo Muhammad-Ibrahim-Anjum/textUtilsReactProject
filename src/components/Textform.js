@@ -4,14 +4,17 @@ export default function Textform(props) {
     const actionUpOnClick = () =>{
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert('Text Converted to Upper Case', 'success');
     }
     const actionLowOnClick = () =>{
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert('Text Converted to Lower Case', 'success');
     }
     const actionClearOnClick = () =>{
         let newText ="";
         setText(newText);
+        props.showAlert('Text Area Cleaned', 'success');
     }
     const getUserText = (event) =>{
         setText(event.target.value);
@@ -22,14 +25,17 @@ export default function Textform(props) {
         var text = document.querySelector('textarea');
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert('Text Copied', 'success');
     }
     const actionRemoveSpace = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert('Text Spaces Removed', 'success');
     }
     const actionRemoveNextLine = () => {
-        let someText = text.replace(/(\r\n|\n|\r)/gm, "")
+        let someText = text.replace(/(\r\n|\n|\r)/gm, "");
         setText(someText);
+        props.showAlert('Text Next Lines Removed', 'success');
     }
     return ( 
         <>

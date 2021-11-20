@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
 import React, {useState} from 'react'
+import Alert from './components/Alert';
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -12,18 +13,33 @@ function App() {
       document.body.style.backgroundColor = 'grey';
       document.body.style.color = 'white';
       document.querySelector('textarea').style.backgroundColor = 'grey';
+      showAlert("Dark Mode Enabled", "success")
     }else{
       setTheme('light');
       document.body.style.backgroundColor = 'white';
       document.body.style.color = 'black';
       document.querySelector('textarea').style.backgroundColor = 'white';
+      showAlert("Light Mode Enabled", "success")
     }
+  }
+
+  const [alert, setAlert] = useState(null);
+
+  const showAlert= (message, type) => {
+    setAlert({
+      mesg : message,
+      type : type
+    })
+    setTimeout(() => {
+      setAlert(null)
+    }, 2000)
   }
   return (
     <>
     <Navbar title="Text Utils" mode={theme} toggleMode={toggleMode} aboutText="About TextUtils"/>
+    <Alert alert = {alert}/>
     <div className="container my-5">
-      <Textform heading="Enter Text Below"/>
+      <Textform showAlert={showAlert} heading="Enter Text Below"/>
     </div>
     </>
   );
