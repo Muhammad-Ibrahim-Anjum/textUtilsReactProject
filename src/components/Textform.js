@@ -37,7 +37,22 @@ export default function Textform(props) {
         setText(someText);
         props.showAlert('Text Next Lines Removed', 'success');
     }
-    return ( 
+    function countWords(str) {
+        str = str.replace(/(^\s*)|(\s*$)/gi,"");
+        str = str.replace(/[ ]{2,}/gi," ");
+        str = str.replace(/\n /,"\n");
+        if(str.length>0){
+            return str.split(' ').length;
+        }else{
+            return str.length;
+        }
+    }
+
+    function countCharacters(str) {
+        str = str.replace(/ /g, "");
+        return str.length;
+    }
+    return (
         <>
         <div className="container" style={props.mode}>
             <div className="container">
@@ -54,8 +69,8 @@ export default function Textform(props) {
             </div>
             <div className="container my3">
                 <h2>Text Summary</h2>
-                <p>{text.split(" ").length} Words and {text.length} Characters</p>
-                <p>{0.018 * text.split(" ").length} Minutes to read</p>
+                <p>{countWords(text)} Words and {countCharacters(text)} Characters</p>
+                <p>{text.length >0 ? 0.018 * countWords(text): 0} Minutes to read</p>
                 <h2>Preview</h2>
                 <p>{text.length >0 ? text:'Enter Text to preview here'}</p>
             </div>

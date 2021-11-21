@@ -6,8 +6,9 @@ function Alert(props) {
         return lower.charAt(0).toUpperCase() + lower.slice(1);
     }
     return (
-            props.alert && <div class={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
-                <strong>{capitalize(props.alert.type)}</strong> : {props.alert.mesg}
+            props.alert && <div style={{width:"30%", margin: "0 auto", 'text-align': "center","z-index": "1000"}} class={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
+                <strong>{capitalize(props.alert.type)}</strong><br/>
+                {props.alert.mesg}
             </div>
     )
 }
