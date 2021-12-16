@@ -9,7 +9,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link
 } from "react-router-dom";
 function App() {
   const [theme, setTheme] = useState('light');
@@ -18,15 +17,11 @@ function App() {
       setTheme('dark');
       document.body.style.backgroundColor = '#3B3C36';
       document.body.style.color = 'white';
-      document.querySelector('textarea').style.backgroundColor = '#3B3C36';
-      document.querySelector('textarea').style.color = 'white';
       showAlert("Dark Mode Enabled", "success")
     }else{
       setTheme('light');
       document.body.style.backgroundColor = 'white';
       document.body.style.color = 'black';
-      document.querySelector('textarea').style.backgroundColor = 'white';
-      document.querySelector('textarea').style.color = 'black';
       showAlert("Light Mode Enabled", "success")
     }
   }
@@ -49,10 +44,10 @@ function App() {
     <Alert alert = {alert}/>
       <Switch>
         <Route exact path="/About">
-          <About />
+          <About mode={theme} />
         </Route>
         <Route exact path="/">
-            <Textform showAlert={showAlert} heading="Enter Text Below"/>
+            <Textform mode={theme} showAlert={showAlert} heading="Enter Text Below"/>
         </Route>
       </Switch>
     </Router>

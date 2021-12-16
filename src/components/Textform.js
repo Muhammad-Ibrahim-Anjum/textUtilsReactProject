@@ -52,20 +52,27 @@ export default function Textform(props) {
         str = str.replace(/ /g, "");
         return str.length;
     }
+
+    const myStyle = {
+        color : props.mode === 'light' ? '#3B3C36' :'white',
+        backgroundColor : props.mode === 'light' ? 'white' : '#3B3C36'
+    }
+
+
     return (
         <>
-        <div className="container" style={props.mode}>
+        <div className="container" style={myStyle}>
             <div className="container">
                 <h1>{props.heading}</h1>
-                <div className="mb-3" style={props.mode}>
-                    <textarea style={props.mode} className="form-control" value={text} onChange={getUserText} id="textForm" rows="3"></textarea>
+                <div className="mb-3" style={myStyle}>
+                    <textarea style={myStyle} className="form-control" value={text} onChange={getUserText} id="textForm" rows="3"></textarea>
                 </div>
-                <button className = "btn btn-primary mx-1" onClick={actionUpOnClick}>Convert to UpperCase</button>
-                <button className = "btn btn-primary mx-1" onClick={actionLowOnClick}>Convert to LowerCase</button>
-                <button className = "btn btn-danger mx-1" onClick={actionClearOnClick}>Clear Text Area</button>
-                <button className = "btn btn-primary mx-1" onClick={actionCopyText}>Copy Text</button>
-                <button className = "btn btn-primary mx-1" onClick={actionRemoveSpace}>Remove Spaces</button>
-                <button className = "btn btn-primary mx-1" onClick={actionRemoveNextLine}>Remove Next Line Space</button>
+                <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionUpOnClick}>Convert to UpperCase</button>
+                <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionLowOnClick}>Convert to LowerCase</button>
+                <button disabled = {text.length === 0} className = "btn btn-danger mx-1 my-1" onClick={actionClearOnClick}>Clear Text Area</button>
+                <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionCopyText}>Copy Text</button>
+                <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionRemoveSpace}>Remove Spaces</button>
+                <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionRemoveNextLine}>Remove Next Line Space</button>
             </div>
             <div className="container my3">
                 <h2>Text Summary</h2>
