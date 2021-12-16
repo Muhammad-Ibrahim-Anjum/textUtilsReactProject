@@ -14,7 +14,7 @@ export default function Textform(props) {
     const actionClearOnClick = () =>{
         let newText ="";
         setText(newText);
-        props.showAlert('Text Area Cleaned', 'success');
+        props.showAlert('Text Area Cleared', 'success');
     }
     const getUserText = (event) =>{
         setText(event.target.value);
@@ -22,9 +22,7 @@ export default function Textform(props) {
     const [text, setText] = useState("Enter Text Here");
 
     const actionCopyText = () => {
-        var text = document.querySelector('textarea');
-        text.select();
-        navigator.clipboard.writeText(text.value);
+        navigator.clipboard.writeText(text);
         props.showAlert('Text Copied', 'success');
     }
     const actionRemoveSpace = () => {
@@ -42,7 +40,7 @@ export default function Textform(props) {
         str = str.replace(/[ ]{2,}/gi," ");
         str = str.replace(/\n /,"\n");
         if(str.length>0){
-            return str.split(' ').length;
+            return str.split(/\s+/).length;
         }else{
             return str.length;
         }
@@ -71,7 +69,7 @@ export default function Textform(props) {
                 <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionLowOnClick}>Convert to LowerCase</button>
                 <button disabled = {text.length === 0} className = "btn btn-danger mx-1 my-1" onClick={actionClearOnClick}>Clear Text Area</button>
                 <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionCopyText}>Copy Text</button>
-                <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionRemoveSpace}>Remove Spaces</button>
+                <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionRemoveSpace}>Remove Extra Spaces</button>
                 <button disabled = {text.length === 0} className = "btn btn-primary mx-1 my-1" onClick={actionRemoveNextLine}>Remove Next Line Space</button>
             </div>
             <div className="container my3">

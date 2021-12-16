@@ -35,7 +35,7 @@ function App() {
     })
     setTimeout(() => {
       setAlert(null)
-    }, 2000)
+    }, 3000)
   }
   return (
     <>
